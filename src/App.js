@@ -1,24 +1,33 @@
 import React from 'react';
 import './App.css';
+import Calculator from "./components/Calculator/Calculator";
+import Button from "./components/Button/Button";
 
 const day = "Saturday";
 
-    function Button() {
-        return (
-            <button>Click me!</button>
-        );
-    }
+
 
 function App() {
   return (
-    <div class="App">
+    <div className="App">
       <p>Hello!</p>
       <p>{day}</p>
-        <Button />
-        <Button />
-        <Button />
+        <Calculator />
     </div>
   );
 }
+
+{/*<App>*/}
+{/*    <Header>*/}
+{/*        <Menu></Menu>*/}
+{/*    </Header>*/}
+{/*    <Main>
+<div>
+<div>
+<div>
+</Main>*/}
+{/*    */}
+{/*    <Footer></Footer>*/}
+{/*</App>*/}
 
 export default App;
