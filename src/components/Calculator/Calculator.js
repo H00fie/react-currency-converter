@@ -3,12 +3,22 @@ import { Button } from "../Button";
 
 function Select({ value, setCurrency }){
     const [currencies, setCurrencies] = useState([]);
+
+    useEffect(() => {
+        fetch(`https://api.ratesapi.io/api/latest?base=PLN`)
+            .then(response => response.json())
+            .then(data => {
+                setCurrencies(Object.keys(data.rates));
+            });
+        return () => {
+            // clearInterval
+            // removeEventListener
+        }
+    }, []);
     return (
         <select value={value} onChange={(event) => setCurrency(event.target.value)}>
-            <option value="USD">USD</option>
-            <option value="PLN">PLN</option>
-            <option value="GBP">GBP</option>
-            <option value="EUR">EUR</option>
+            {currencies.map((elem) => <option key={`curr-${elem}`} value={elem}>{elem}</option>
+            )}
         </select>
     );
 }
