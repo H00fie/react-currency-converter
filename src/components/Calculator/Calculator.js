@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button } from "../Button";
 
 function Select({ value, setCurrency }){
+    const [currencies, setCurrencies] = useState([]);
     return (
         <select value={value} onChange={(event) => setCurrency(event.target.value)}>
             <option value="USD">USD</option>
@@ -13,15 +14,16 @@ function Select({ value, setCurrency }){
 }
 
 function Calculator() {
+    const [result, setResult] = useState(0);
     const [amount, setAmount] = useState(0);
     const [currencyFrom, setCurrencyFrom] = useState('PLN');
     const [currencyTo, setCurrencyTo] = useState('USD');
     const handleSubmit = (event) => {
         event.preventDefault();
-        fetch('https://api.ratesapi.io/api/latest?base=PLN')
+        fetch(`https://api.ratesapi.io/api/latest?base=${currencyFrom}`)
             .then(response => response.json())
             .then(data => {
-                    console.log(data);
+                    setResult(amount * data.rates[currencyTo]);
                 });
     }
     return (
@@ -40,7 +42,7 @@ function Calculator() {
                 <span>To:</span>
                 <Select value={currencyTo} setCurrency={setCurrencyTo}/>
             </div>
-            <div>Result: {amount}</div>
+            <div>Result: {result}</div>
             <Button type="submit">Send</Button>
         </form>
     )
