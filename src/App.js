@@ -1,14 +1,22 @@
 import React from 'react';
 import './App.css';
 
-const day = "Starday";
+const day = "Saturday";
+
+    function Button() {
+        return (
+            <button>Click me!</button>
+        );
+    }
 
 function App() {
   return (
     <div class="App">
       <p>Hello!</p>
       <p>{day}</p>
-        <button
+        <Button />
+        <Button />
+        <Button />
     </div>
   );
 }
